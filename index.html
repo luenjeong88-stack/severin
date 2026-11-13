@@ -116,6 +116,13 @@ body{transition:background .7s,color .7s}
 .home{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);z-index:20;width:46px;height:46px;border-radius:50%;border:0;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 4px rgba(255,122,184,.55));transition:transform .3s,filter .3s}
 .home:hover,.home:focus-visible{transform:translateX(-50%) scale(1.12);filter:drop-shadow(0 0 7px rgba(95,195,245,.8))}
 .home svg{width:34px;height:34px;max-width:none;margin:0;display:block;overflow:visible}
+@keyframes nzj2{0%{transform:translate(0,0) skewX(0)}8%{transform:translate(-2px,0) skewX(-1.5deg)}16%{transform:translate(2.5px,.5px) skewX(2deg)}24%{transform:translate(-1.5px,-.5px)}32%{transform:translate(0,0) skewX(0)}60%{transform:translate(0,0)}64%{transform:translate(4px,0) skewX(5deg)}68%{transform:translate(-3px,1px) skewX(-4deg)}72%{transform:translate(2px,-1px)}76%{transform:translate(0,0) skewX(0)}100%{transform:translate(0,0)}}
+@keyframes nzt{0%{text-shadow:1px 0 rgba(255,50,50,.5),-1px 0 rgba(90,0,15,.4)}25%{text-shadow:-3px 0 rgba(255,50,50,.65),3px 0 rgba(0,0,0,.7)}50%{text-shadow:1px 0 rgba(255,50,50,.4),-1px 0 rgba(90,0,15,.3)}75%{text-shadow:4px 0 rgba(255,70,70,.6),-2px 0 rgba(60,0,10,.55)}100%{text-shadow:1px 0 rgba(255,50,50,.5),-1px 0 rgba(90,0,15,.4)}}
+@keyframes nzf{0%,100%{opacity:1}70%{opacity:.35}72%{opacity:1}74%{opacity:.2}76%{opacity:1}}
+@keyframes nzc2{0%,100%{clip-path:inset(0 0 100% 0);transform:translate(2px,0)}10%{clip-path:inset(12% 0 70% 0);transform:translate(-6px,0)}14%{clip-path:inset(0 0 100% 0)}30%{clip-path:inset(55% 0 25% 0);transform:translate(7px,1px)}34%{clip-path:inset(30% 0 52% 0);transform:translate(-4px,0)}38%{clip-path:inset(0 0 100% 0)}58%{clip-path:inset(72% 0 8% 0);transform:translate(5px,0)}62%{clip-path:inset(0 0 100% 0)}80%{clip-path:inset(20% 0 60% 0);transform:translate(-8px,-1px)}84%{clip-path:inset(40% 0 38% 0);transform:translate(6px,0)}88%{clip-path:inset(0 0 100% 0)}}
+:root.red .nz{animation:nzj2 1.1s ease-in-out infinite,nzt .45s steps(1) infinite,nzf 1.7s steps(1) infinite}
+:root.red .nz::after{color:rgba(255,40,60,.7);opacity:1;animation:nzc2 .75s steps(1) infinite}
+:root.red.night .panel::after{opacity:.3;animation:nzs .16s steps(1) infinite}
 </style>
 </head>
 <body>
