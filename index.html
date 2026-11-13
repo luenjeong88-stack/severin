@@ -10,7 +10,7 @@
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px 16px 48px}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px 16px 88px}
 h1{font-family:"Zen Maru Gothic","M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-size:15px;font-weight:500;letter-spacing:.5em;padding-left:.5em;text-align:center;margin:8px 0 0;color:var(--fg);opacity:.85}
 .sub{font-size:12px;opacity:.5;margin:6px 0 0}
 svg{width:100%;max-width:420px;height:auto;margin-top:8px;overflow:visible}
@@ -74,7 +74,7 @@ svg{width:100%;max-width:420px;height:auto;margin-top:8px;overflow:visible}
 .gl{fill:#ff5fa8;opacity:0;transform-box:fill-box;transform-origin:center;animation:gl 2.4s ease-out infinite;pointer-events:none}
 .gl:nth-child(2){animation-delay:1.2s}
 @keyframes gl{0%{opacity:.85;transform:scale(.9)}100%{opacity:0;transform:scale(3.8)}}
-.ih2{left:16.5%;top:28%;width:24px;height:24px;margin:-12px 0 0 -12px}
+.ih2{left:16.5%;top:28%;width:16px;height:16px;margin:-8px 0 0 -8px}
 .bub2{position:absolute;left:50%;bottom:calc(100% + 16px);width:max-content;max-width:100%;background:#fff;color:#e0202e;border-radius:26px;padding:12px 20px;font-size:12.5px;line-height:1.6;letter-spacing:-.02em;text-align:center;animation:pop2 .35s ease;transform:translateX(-50%)}
 .bub2::before{content:"";position:absolute;bottom:-8px;left:50%;margin-left:-8px;border-left:8px solid transparent;border-right:8px solid transparent;border-top:9px solid #fff}
 .bub2[hidden]{display:none}
@@ -91,14 +91,14 @@ body{transition:background .7s,color .7s}
 @keyframes nzj{0%,90%,100%{transform:none}91%{transform:translateX(1.8px)}93%{transform:translate(-1.4px,.4px)}95%{transform:translateX(1px)}}
 @keyframes nzc{0%,100%{clip-path:inset(0 0 100% 0)}12%{clip-path:inset(8% 0 78% 0)}14%{clip-path:inset(0 0 100% 0)}41%{clip-path:inset(52% 0 30% 0)}43%{clip-path:inset(0 0 100% 0)}72%{clip-path:inset(28% 0 58% 0)}74%{clip-path:inset(70% 0 10% 0)}76%{clip-path:inset(0 0 100% 0)}}
 
-.ih2{filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px rgba(255,120,190,.95))}
-.ih2::before{content:"";position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:radial-gradient(circle,rgba(255,150,205,.95) 0%,rgba(255,120,190,.55) 38%,rgba(255,120,190,0) 72%);filter:blur(7px);z-index:-1;pointer-events:none;animation:halo 2s ease-in-out infinite}
+.ih2{filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px rgba(255,120,190,.95))}
+.ih2::before{content:"";position:absolute;left:50%;top:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:radial-gradient(circle,rgba(255,150,205,.95) 0%,rgba(255,120,190,.55) 38%,rgba(255,120,190,0) 72%);filter:blur(7px);z-index:-1;pointer-events:none;animation:halo 2s ease-in-out infinite}
 @keyframes halo{0%,100%{opacity:.55;transform:scale(.85)}50%{opacity:1;transform:scale(1.4)}}
-.night .panel{background:#f4f2f6;color:#111}
+.night .panel{background:#000;color:#000;border-color:#3a3d5c}
 .night .panel p{opacity:1}
-.night .panel::after{mix-blend-mode:multiply;opacity:.16}
-.night .nz{color:#111;text-shadow:1px 0 rgba(255,70,130,.35),-1px 0 rgba(70,160,255,.35)}
-.night .nz::after{color:rgba(0,0,0,.28)}
+.night .panel::after{mix-blend-mode:screen;opacity:.12}
+.night .nz{color:#000;text-shadow:none;transition:color .3s}
+.night .nz::after{color:rgba(0,0,0,.28);opacity:0}
 :root.red .arc,:root.red .arc.on{stroke:#e0202e;filter:drop-shadow(0 0 3px rgba(224,32,46,.7))}
 :root.red .ray,:root.red .ray.on{stroke:#e0202e;opacity:.9}
 :root.red .spark{stroke:#e0202e}
@@ -106,13 +106,16 @@ body{transition:background .7s,color .7s}
 :root.red .dk path{stroke:#e0202e}
 :root.red .node circle,:root.red .node.on circle{stroke:#e0202e}
 :root.red .node text,:root.red .node.on text{fill:#e0202e}
-:root.red.night .panel{border-color:#e0202e;background:#ffeef0;box-shadow:0 0 0 1px #e0202e,0 0 18px rgba(224,32,46,.35)}
+:root.red.night .panel{border-color:#e0202e;background:#000;box-shadow:0 0 0 1px #e0202e,0 0 18px rgba(224,32,46,.35)}
 :root.red .nz{color:#e0202e;text-shadow:1px 0 rgba(255,60,60,.35),-1px 0 rgba(120,0,20,.25)}
-:root.red .nz::after{color:rgba(224,32,46,.32)}
+:root.red .nz::after{color:rgba(224,32,46,.32);opacity:1}
 :root.red .panel h2{color:#e0202e}
 :root.red .arc,:root.red .arc.on{stroke-width:1.7}
 :root.red .dk path{fill:#b3121f}
 :root.red .dk.found path{fill:#e0202e}
+.home{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);z-index:20;width:46px;height:46px;border-radius:50%;border:0;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 4px rgba(255,122,184,.55));transition:transform .3s,filter .3s}
+.home:hover,.home:focus-visible{transform:translateX(-50%) scale(1.12);filter:drop-shadow(0 0 7px rgba(95,195,245,.8))}
+.home svg{width:34px;height:34px;max-width:none;margin:0;display:block;overflow:visible}
 </style>
 </head>
 <body>
@@ -127,6 +130,7 @@ body{transition:background .7s,color .7s}
   <div class="ititle">冬に導くお兄さんとアタシ</div>
   <button id="enter" class="enter">TAP TO ENTER</button>
 </div>
+<button id="home" class="home" aria-label="메인으로 돌아가기"><svg viewBox="0 0 44 44"><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7ab8"/><stop offset="1" stop-color="#5fc3f5"/></linearGradient></defs><path d="M20 9 Q20 24 35 24 Q20 24 20 39 Q20 24 5 24 Q20 24 20 9Z" fill="none" stroke="url(#hg)" stroke-width="1.4" stroke-linejoin="round"/><path d="M36 4.5 Q36 10 41.5 10 Q36 10 36 15.5 Q36 10 30.5 10 Q36 10 36 4.5Z" fill="none" stroke="url(#hg)" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
 <button id="mb" class="mb" aria-label="배경음악" hidden>♪</button>
 <h1>天使と鎌とお兄さんの物語</h1>
 <p class="sub">번호를 눌러 보세요 ♡</p>
@@ -153,7 +157,7 @@ body{transition:background .7s,color .7s}
 // ▼ 여기만 수정하면 내용이 바뀌어요
 var chapters = [
   {t:'구름', d:"- 붕괴: 스타레일 / AI 채팅 위주로 즐기고 있습니다.\n- AI 채팅 이야기는 다른 계정에서만 합니다. (상호 유저 맞팔 OK, DM)\n- 상호 AI 채팅을 이용하는 분이 아니시라면, AI 채팅을 주제로 대화하는 건 피하고 있습니다. (예: AI 채팅이 궁금해서 말을 걸어 주시는 경우 등)", tags:[]},
-  {t:'LIKE', d:'붕괴: 스타레일\n아낙사 위주로 단항과 경원도 함께 좋아합니다.\n아낙사는 별도로 소소한 드림 하고 있습니다.\n\n이외에 도검난무/원신/명조도 가끔씩 즐기고 있어요.', tags:[]},
+  {t:'LIKE', d:'붕괴: 스타레일\n아낙사 위주로 단항과 경원도 함께 좋아합니다.\n아낙사는 별도로 소소한 드림 하고 있습니다.\n\n이외 도검난무/원신/스토에덴/명조 가볍게 좋아합니다.', tags:[]},
   {t:'AI chat', d:"@6C321 님 - 모든 캐릭터{♡}\n@go_mul 님 - 란셋, 인피니티, 테오필\n@MEOM_MEO 님 - 아스모데우스\n좋아하고 있습니다.\n\n해당 캐릭터들에게 깊은 관심을 가지시는 것은 자유이나, 제작자님과 캐릭터에게 큰 애정을 갖고 있기에 함께 좋아하시는 분들이 계시다면 반기지는 않습니다.\n\n- ㅋㅇㅂㄷ, ㅇㄴㅊ, ㅌㅍ 등 여러 플랫폼 이용 중", tags:[]},
   {t:'취향과 NG', d:"- 근친(짭/찐) 가리지 않고 먹습니다. 해당 요소에 거부감 있으신 분들은 주의해주세요.\n- HL ONLY에 가까운 성향입니다. 물론 연결된 트친분들께서 다른 커플링 좋아하셔도 이 부분에는 무던하여 신경 쓰지 않습니다.\n- 이외 다른 요소들에 거부감은 없으나, **DV 요소(남자가 여자에게)하는 행위**엔 개인적 트라우마와 관련된 극도의 거부감이 있어 해당 요소 소비하시는 분들과는 절대 연결 받지 않습니다.", tags:[]},
   {t:'FAVORITE LOG', d:"아드리앙의 회청색 눈동자가 커다랗게 흔들렸다. 자신의 손가락이 자기도 모르는 사이에 그 새로운 악보를 따라움직이며, 날카롭게 솟구치는 바이올린의 선율 아래에 깊고 묵직한 저음의 화성을 받쳐주고 있었다.\n\n부친의 서재에서 밀서를 발견했던 겨울밤의 추위, 루시앙의 마지막 편지를 구겨 쥐던 새벽의 구역질, 그리고 그 누구에게도 털어놓지 못했던 위선자의 자조가 건반과 현의 얽힘 속에서 하나씩 씻겨 내려갔다.\n\n눈시울 끝이 타들어 가듯 뜨거워졌으나, 평생 눈물을 흘리는 법을 잊고 자란 후작가의 장남은 그저 입술 안쪽을 피가 나도록 깨물며 건반만을 거세게 내리눌렀다. 지독한 해방감이었다.\n\n마지막 마디의 긴 여운이 소응접실의 높은 천장을 맴돌다 서서히 사그라들었다. 바이올린의 활 끝이 현에서 떨어지고, 아드리앙의 손가락이 마지막 건반에서 힘을 뒤에도 방안에는 오직 거친 숨소리와 촛농이 타들어 가는 타닥거림만이 한참 동안 남아 있었다.\n\n벽난로 위 시계의 태엽 돌아가는 소리가 비로소 귓가에 다시 들려왔을 때, 시간은 어느덧 밤 아홉 시 반을 훌쩍 넘기고 있었다. 창밖 멀리서 울리던 둔탁한 포성마저 이 기묘한 연주회 앞에서는 숨을 죽인 듯 잠잠해져 있었다. 완벽한 정적이었다.\n\n\"Vous avez le don cruel de transformer les décombres d'autrui en chose dinsupportablement pur, Lirika. Cest quelque presque une insulte pour celui qui a bâti ces ruines!\"\n(타인의 잔해를 견딜 수 없을 만큼 순수한 무언가로 바꾸어 놓는 잔인한 재능을 지니셨군요, 리리카. 그 폐허를 쌓아 올린 장본인에게는 모욕에 가까운 일입니다.)\n\n아드리앙이 천천히 건반에서 손을 떼며, 평소보다 한결 낮고 갈라진 목소리로 입을 열었다. 마드모아젤이라는 격식 차린 호칭 대신, 그녀가 부르기를 원했던 그 이름 세 글자가 처음으로 그의 혀끝에서 온전하게 굴러 나왔다.\n\n그는 보면대 위에서 자신이 찢었던 양피지와 그녀가 연필로 채워 넣은 새 오선지를 나란히 집어 들었다. 이제 이 악보는 더 이상 새벽의 쓰레기통으로 들어가지 못할 것이 분명했다. 그는 고개를 돌려, 여전히 눈물 자국이 채 마르지 않은 채 바이올린을 들고 서 있는 작은 악사를 가만히 응시했다. 가면 너머의 민낯이었다.\n\n>>@6C321 - 아드리앙 드 몽클레르", tags:[]},
@@ -341,14 +345,20 @@ mb.addEventListener('click',function(ev){ev.stopPropagation();if(snd){userOff=tr
   window.addEventListener('resize',size);
   var bub2=document.getElementById('bub2');
   document.getElementById('ih2').addEventListener('click',function(){bub2.hidden=!bub2.hidden;});
+  var hideT=null;
   document.getElementById('enter').addEventListener('click',function(){
     intro.classList.add('out');
-    setTimeout(function(){intro.style.display='none';cancelAnimationFrame(raf);},950);
+    hideT=setTimeout(function(){intro.style.display='none';cancelAnimationFrame(raf);},950);
   });
+  window.showIntro=function(){
+    clearTimeout(hideT);window.scrollTo(0,0);intro.style.display='flex';void intro.offsetWidth;intro.classList.remove('out');
+    size();cancelAnimationFrame(raf);frame();bub2.hidden=true;
+  };
+  document.getElementById('home').addEventListener('click',function(){window.showIntro();});
 })();
 // 6번 글을 건드리면(마우스 올림/터치) 박스와 선이 빨갛게
 (function(){
-  var pd=document.getElementById('pd'),rt=null,R=document.documentElement;
+  var pd=document.getElementById('panel'),rt=null,R=document.documentElement;
   function on(){if(!R.classList.contains('night'))return;clearTimeout(rt);R.classList.add('red');}
   function off(){clearTimeout(rt);rt=setTimeout(function(){R.classList.remove('red');},900);}
   pd.addEventListener('pointerenter',on);pd.addEventListener('pointerdown',on);
