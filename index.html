@@ -356,13 +356,16 @@ mb.addEventListener('click',function(ev){ev.stopPropagation();if(snd){userOff=tr
   };
   document.getElementById('home').addEventListener('click',function(){window.showIntro();});
 })();
-// 6번 글을 건드리면(마우스 올림/터치) 박스와 선이 빨갛게
+// 6번 글을 건드리면(마우스 올림/터치) 박스와 선이 빨갛게, 다른 곳에 마우스/손을 두면 바로 원래대로
 (function(){
-  var pd=document.getElementById('panel'),rt=null,R=document.documentElement;
-  function on(){if(!R.classList.contains('night'))return;clearTimeout(rt);R.classList.add('red');}
-  function off(){clearTimeout(rt);rt=setTimeout(function(){R.classList.remove('red');},900);}
-  pd.addEventListener('pointerenter',on);pd.addEventListener('pointerdown',on);
-  pd.addEventListener('pointerleave',off);pd.addEventListener('pointerup',off);pd.addEventListener('pointercancel',off);
+  var pd=document.getElementById('panel'),R=document.documentElement;
+  function on(){if(R.classList.contains('night'))R.classList.add('red');}
+  function offNow(){R.classList.remove('red');}
+  pd.addEventListener('pointerenter',on);
+  pd.addEventListener('pointerdown',on);
+  pd.addEventListener('pointerleave',function(ev){if(ev.pointerType!=='touch')offNow();});
+  document.addEventListener('pointerdown',function(ev){if(!pd.contains(ev.target))offNow();},true);
+  document.addEventListener('pointermove',function(ev){if(ev.pointerType!=='touch'&&!pd.contains(ev.target))offNow();},true);
 })();
 pick(0);
 </script>
