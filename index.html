@@ -243,7 +243,7 @@ dkPos.forEach(function(p,i){
     lastHid=i;document.getElementById('panel').hidden=true;
     if(i===COMBO.heart)glowOn();else glowOff();
     dkEls.forEach(function(x){x.classList.remove('found');});g.style.setProperty('--hc',i%2===0?'#3ea8e6':'#ff5fa8');g.classList.add('found');
-    var s=document.getElementById('sec');s.hidden=false;
+    var s=document.getElementById('sec');s.hidden=false;document.getElementById('panel').after(s);
     s.innerHTML='';var d=secrets[i]||{n:'',t:'히든!'};
     var l1=document.createElement('div');l1.className='sl';
     var nm=document.createElement('b');nm.textContent=d.n;nm.style.color=(i%2===0?'#3ea8e6':'#ff5fa8');
@@ -277,7 +277,7 @@ function showNum(i){
   var combo=(lastHid===COMBO.heart&&i===COMBO.chapter);
   pick(i);
   document.getElementById('panel').hidden=false;
-  if(combo){sec.hidden=false;}else{sec.hidden=true;lastHid=-1;dkEls.forEach(function(x){x.classList.remove('found');});}
+  if(combo){sec.hidden=false;document.getElementById('panel').before(sec);}else{sec.hidden=true;document.getElementById('panel').after(sec);lastHid=-1;dkEls.forEach(function(x){x.classList.remove('found');});}
 }
 function fillBody(el,text){
   el.textContent='';
@@ -298,36 +298,53 @@ var sec=document.createElement('div');sec.id='sec';sec.className='secret';sec.hi
 document.getElementById('panel').after(sec);
 
 // ♪ 배경음악: 인트로부터 (무음으로) 재생을 시도하고, 첫 터치/클릭 때 소리를 켜요
-var mb=document.getElementById('mb'),au=document.getElementById('bgm'),snd=false,userOff=false;
+var mb=document.getElementById('mb'),au=document.getElementById('bgm'),snd=false,ok=false,userOff=false;
 au.muted=true;
 var p0=au.play();if(p0&&p0.catch)p0.catch(function(){});
-var FADE=6.5,VOL=.7; // FADE: 시작할 때 서서히 커지고 노래가 끝날 때 서서히 작아지는 시간(초), VOL: 최대 음량(0~1)
+var FADE=6.5,VOL=.56; // FADE: 시작할 때 서서히 커지고 노래가 끝날 때 서서히 작아지는 시간(초), VOL: 최대 음량(0~1)
+// 아이폰처럼 audio.volume이 안 먹는 기기에서만 WebAudio로 페이드를 처리해요
+var volOK=(function(){try{au.volume=.5;var r=Math.abs(au.volume-.5)<.01;au.volume=1;return r;}catch(e){return false;}})();
 var AC=window.AudioContext||window.webkitAudioContext,ctx=null,gn=null,tickT=null,startT=0;
 function ease(x){x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);}
 function ensureGain(){
-  if(ctx||!AC)return;
+  if(volOK||ctx||!AC)return;
   try{ctx=new AC();gn=ctx.createGain();gn.gain.value=0;ctx.createMediaElementSource(au).connect(gn);gn.connect(ctx.destination);}
   catch(e){ctx=null;gn=null;}
 }
+function setLevel(v){
+  if(ctx&&gn)gn.gain.setTargetAtTime(v,ctx.currentTime,.06);
+  else{try{au.volume=Math.max(0,Math.min(1,v));}catch(e){}}
+}
 function tick(){
   var d=au.duration,cur=au.currentTime,rem=isFinite(d)?d-cur:99;
-  var v=VOL*ease((Date.now()-startT)/1000/FADE)*ease(rem/FADE)*ease(cur/FADE);
-  if(ctx&&gn)gn.gain.setTargetAtTime(v,ctx.currentTime,.06);else au.volume=Math.max(0,Math.min(1,v));
+  setLevel(VOL*ease((Date.now()-startT)/1000/FADE)*ease(rem/FADE)*ease(cur/FADE));
 }
-function soundOn(){
-  snd=true;mb.classList.add('on');startT=Date.now();
+// 소리 켜기: 브라우저가 막으면(터치 직후 등) 조용히 실패하고 다음 터치/클릭 때 다시 시도해요
+function tryStart(){
+  if(userOff||ok)return;
   ensureGain();
-  if(ctx&&gn){if(ctx.resume)ctx.resume();gn.gain.value=0;}else au.volume=0;
+  if(ctx&&gn)gn.gain.value=0;else{try{au.volume=0;}catch(e){}}
+  var r=(ctx&&ctx.resume)?ctx.resume():null;
   au.muted=false;
-  clearInterval(tickT);tickT=setInterval(tick,80);tick();
-  var pr=au.play();if(pr&&pr.catch)pr.catch(function(){snd=false;clearInterval(tickT);mb.classList.remove('on');});
+  var pr=au.play();
+  Promise.all([r,pr]).then(function(){
+    if(au.paused||(ctx&&ctx.state!=='running')){au.muted=true;return;}
+    ok=true;snd=true;mb.classList.add('on');startT=Date.now();
+    clearInterval(tickT);tickT=setInterval(tick,80);tick();
+  }).catch(function(){au.muted=true;});
 }
-function soundOff(){snd=false;au.muted=true;clearInterval(tickT);mb.classList.remove('on');}
+function soundOff(){ok=false;snd=false;au.muted=true;clearInterval(tickT);mb.classList.remove('on');}
 mb.hidden=false;
-mb.addEventListener('click',function(ev){ev.stopPropagation();if(snd){userOff=true;soundOff();}else{userOff=false;soundOn();}});
-['pointerdown','touchend','keydown'].forEach(function(n){
-  document.addEventListener(n,function(ev){if(mb.contains(ev.target)||userOff||snd)return;soundOn();},{passive:true});
+mb.addEventListener('click',function(ev){ev.stopPropagation();if(ok){userOff=true;soundOff();}else{userOff=false;tryStart();}});
+['pointerdown','pointerup','touchend','click','keydown'].forEach(function(n){
+  document.addEventListener(n,function(ev){if(mb.contains(ev.target))return;tryStart();},{passive:true,capture:true});
 });
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden||!ok)return;
+  if(ctx&&ctx.resume)ctx.resume();
+  if(au.paused){var q=au.play();if(q&&q.catch)q.catch(function(){});}
+});
+
 // ❄ 인트로
 (function(){
   var intro=document.getElementById('intro'),cv=document.getElementById('snow'),cx=cv.getContext('2d');
