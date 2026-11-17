@@ -28,9 +28,9 @@ svg{width:100%;max-width:420px;height:auto;margin-top:8px;overflow:visible}
 .core{fill:var(--c);transition:fill .3s}
 .panel{width:100%;max-width:420px;border:1px solid var(--c);padding:12px 14px;margin-top:16px;transition:border-color .3s}
 .panel h2{margin:0 0 6px;font-size:12px;font-weight:500;color:var(--c)}
-.panel p{margin:0;font-size:12px;line-height:1.7;opacity:.85}
-.panel .gap{height:.8em}
-.panel .li{padding-left:.9em;text-indent:-.9em;margin-bottom:.45em}
+.panel p{margin:0;font-size:12px;line-height:1.55;opacity:.85}
+.panel .gap{height:.55em}
+.panel .li{padding-left:.9em;text-indent:-.9em;margin-bottom:.25em}
 .panel .mk{display:inline-block;width:.9em;text-indent:0}
 .panel .rt{text-align:right;margin-top:.2em;opacity:.7}
 .panel b{font-weight:700}
@@ -141,7 +141,7 @@ body{transition:background .7s,color .7s}
 :root:not(.night) .node circle{stroke-width:1.3}
 :root:not(.night) .spark{stroke:#fff;stroke-width:1.2;filter:drop-shadow(0 0 1.5px rgba(133,112,189,.8))}
 :root:not(.night) .panel{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.panel .sb{padding-left:1.9em;text-indent:-1.1em;margin:-.15em 0 .5em;font-size:11.5px;opacity:.78}
+.panel .sb{padding-left:1.9em;text-indent:-1.1em;margin:-.1em 0 .35em;font-size:11.5px;opacity:.78}
 .panel .sb .mk{width:1.1em}
 #bgv{position:fixed;left:0;top:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none;transition:opacity .7s;background:linear-gradient(#f9c0e4,#d7b0f2 52%,#9fd3fb)}
 :root.night #bgv{opacity:0}
@@ -266,6 +266,8 @@ dkPos.forEach(function(p,i){
   el('path',{d:hp(p[0],p[1],p[2]*.85)},g);el('circle',{cx:p[0],cy:p[1],r:14},g);
   function open(){
     lastHid=i;document.getElementById('panel').hidden=true;
+    var R0=document.documentElement;
+    if(R0.classList.contains('night')){R0.classList.remove('night','red');document.getElementById('pic').classList.remove('on');for(var k0=0;k0<N;k0++){arcs[k0].classList.remove('on');nodes[k0].classList.remove('on');rays[k0].classList.remove('on');}}
     if(i===COMBO.heart)glowOn();else glowOff();
     dkEls.forEach(function(x){x.classList.remove('found');});g.style.setProperty('--hc',i%2===0?'#3ea8e6':'#ff5fa8');g.classList.add('found');
     var s=document.getElementById('sec');s.hidden=false;document.getElementById('panel').after(s);
