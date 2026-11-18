@@ -10,7 +10,7 @@
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px 16px 88px}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;display:flex;flex-direction:column;align-items:center;padding:24px 16px 104px}
 h1{font-family:"Zen Maru Gothic","M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-size:15px;font-weight:500;letter-spacing:.5em;padding-left:.5em;text-align:center;margin:8px 0 0;color:var(--fg);opacity:.85}
 .sub{font-size:12px;opacity:.5;margin:6px 0 0}
 svg{width:100%;max-width:420px;height:auto;margin-top:8px;overflow:visible}
@@ -124,7 +124,7 @@ body{transition:background .7s,color .7s}
 :root.red .arc,:root.red .arc.on{stroke-width:1.7}
 :root.red .dk path{fill:#b3121f}
 :root.red .dk.found path{fill:#e0202e}
-.home{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);z-index:20;width:46px;height:46px;border-radius:50%;border:0;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 4px rgba(255,122,184,.55));transition:transform .3s,filter .3s}
+.home{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 26px);transform:translateX(-50%);z-index:20;width:46px;height:46px;border-radius:50%;border:0;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 4px rgba(255,122,184,.55));transition:transform .3s,filter .3s}
 .home:hover,.home:focus-visible{transform:translateX(-50%) scale(1.12);filter:drop-shadow(0 0 7px rgba(95,195,245,.8))}
 .home svg{width:34px;height:34px;max-width:none;margin:0;display:block;overflow:visible}
 @keyframes nzj2{0%{transform:translate(0,0) skewX(0)}8%{transform:translate(-2px,0) skewX(-1.5deg)}16%{transform:translate(2.5px,.5px) skewX(2deg)}24%{transform:translate(-1.5px,-.5px)}32%{transform:translate(0,0) skewX(0)}60%{transform:translate(0,0)}64%{transform:translate(4px,0) skewX(5deg)}68%{transform:translate(-3px,1px) skewX(-4deg)}72%{transform:translate(2px,-1px)}76%{transform:translate(0,0) skewX(0)}100%{transform:translate(0,0)}}
@@ -145,6 +145,11 @@ body{transition:background .7s,color .7s}
 .panel .sb .mk{width:1.1em}
 #bgv{position:fixed;left:0;top:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none;transition:opacity .7s;background:linear-gradient(#f9c0e4,#d7b0f2 52%,#9fd3fb)}
 :root.night #bgv{opacity:0}
+.dk-link{position:fixed;left:calc(50% + var(--ox,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 26px);transform:translateX(-50%);z-index:20;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 4px rgba(255,122,184,.55));transition:transform .3s,filter .3s;-webkit-tap-highlight-color:transparent;text-decoration:none}
+#lkB{filter:drop-shadow(0 0 4px rgba(95,195,245,.65))}
+.dk-link:hover,.dk-link:focus-visible{transform:translateX(-50%) scale(1.12)}
+.dk-link svg{width:34px;height:34px;max-width:none;margin:0;display:block;overflow:visible}
+.dk-link::after,.home::after{content:attr(data-cap);position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:1px;font-size:8px;letter-spacing:.14em;white-space:nowrap;color:var(--fg);opacity:.75;pointer-events:none}
 </style>
 </head>
 <body>
@@ -162,7 +167,9 @@ body{transition:background .7s,color .7s}
   <div class="ititle">冬に導くお兄さんとアタシ</div>
   <button id="enter" class="enter">TAP TO ENTER</button>
 </div>
-<button id="home" class="home" aria-label="메인으로 돌아가기"><svg viewBox="0 0 44 44"><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7ab8"/><stop offset="1" stop-color="#5fc3f5"/></linearGradient></defs><path d="M20 9 Q20 24 35 24 Q20 24 20 39 Q20 24 5 24 Q20 24 20 9Z" fill="none" stroke="url(#hg)" stroke-width="1.4" stroke-linejoin="round"/><path d="M36 4.5 Q36 10 41.5 10 Q36 10 36 15.5 Q36 10 30.5 10 Q36 10 36 4.5Z" fill="none" stroke="url(#hg)" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+<a id="lkA" class="dk-link" href="standchen.html" style="--ox:-58px" data-cap="Ständchen" aria-label="Ständchen 페이지로 이동"><svg viewBox="0 0 44 44"><defs><linearGradient id="lgA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5fa8"/><stop offset="1" stop-color="#ffb3d6"/></linearGradient></defs><path d="M20 9 Q20 24 35 24 Q20 24 20 39 Q20 24 5 24 Q20 24 20 9Z" fill="none" stroke="url(#lgA)" stroke-width="1.5" stroke-linejoin="round"/><path d="M36 4.5 Q36 10 41.5 10 Q36 10 36 15.5 Q36 10 30.5 10 Q36 10 36 4.5Z" fill="none" stroke="url(#lgA)" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
+<a id="lkB" class="dk-link" href="byakko.html" style="--ox:58px" data-cap="白虎" aria-label="白虎 페이지로 이동"><svg viewBox="0 0 44 44"><defs><linearGradient id="lgB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fa8f0"/><stop offset="1" stop-color="#a9e0ff"/></linearGradient></defs><path d="M20 9 Q20 24 35 24 Q20 24 20 39 Q20 24 5 24 Q20 24 20 9Z" fill="none" stroke="url(#lgB)" stroke-width="1.5" stroke-linejoin="round"/><path d="M36 4.5 Q36 10 41.5 10 Q36 10 36 15.5 Q36 10 30.5 10 Q36 10 36 4.5Z" fill="none" stroke="url(#lgB)" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
+<button id="home" class="home" data-cap="MAIN" aria-label="메인으로 돌아가기"><svg viewBox="0 0 44 44"><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7ab8"/><stop offset="1" stop-color="#5fc3f5"/></linearGradient></defs><path d="M20 9 Q20 24 35 24 Q20 24 20 39 Q20 24 5 24 Q20 24 20 9Z" fill="none" stroke="url(#hg)" stroke-width="1.4" stroke-linejoin="round"/><path d="M36 4.5 Q36 10 41.5 10 Q36 10 36 15.5 Q36 10 30.5 10 Q36 10 36 4.5Z" fill="none" stroke="url(#hg)" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
 <button id="mb" class="mb" aria-label="배경음악" hidden>♪</button>
 <h1>天使と鎌とお兄さんの物語</h1>
 <p class="sub">번호를 눌러 보세요 ♡</p>
@@ -435,6 +442,12 @@ document.addEventListener('visibilitychange',function(){
   pd.addEventListener('pointerleave',function(ev){if(ev.pointerType!=='touch')offNow();});
   document.addEventListener('pointerdown',function(ev){if(!pd.contains(ev.target))offNow();},true);
   document.addEventListener('pointermove',function(ev){if(ev.pointerType!=='touch'&&!pd.contains(ev.target))offNow();},true);
+})();
+// 하단 한 줄: Ständchen · MAIN · 白虎
+(function(){
+  function go(url){document.body.style.transition='opacity .35s';document.body.style.opacity='0';setTimeout(function(){location.href=url;},330);setTimeout(function(){document.body.style.opacity='';},1800);}
+  ['lkA','lkB'].forEach(function(id){var a=document.getElementById(id);a.addEventListener('click',function(ev){ev.preventDefault();go(a.getAttribute('href'));});});
+  window.addEventListener('pageshow',function(){document.body.style.opacity='';});
 })();
 pick(0);
 </script>
