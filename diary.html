@@ -22,7 +22,7 @@
 html{background:#efe9ff;-webkit-text-size-adjust:100%}
 body{margin:0;min-height:100vh;min-height:100dvh;color:var(--fg);
   font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-  padding:calc(env(safe-area-inset-top,0px) + 30px) 18px calc(env(safe-area-inset-bottom,0px) + 96px);
+  padding:calc(env(safe-area-inset-top,0px) + 34px) 18px calc(env(safe-area-inset-bottom,0px) + 48px);
   display:flex;flex-direction:column;align-items:center;overflow-x:hidden}
 
 /* ── 고정 배경: iOS에서도 움직이지 않도록 fixed 레이어 사용 ── */
@@ -118,13 +118,10 @@ h1 .ht{margin:0 .1em}
 .sign{text-align:right;font-size:12px;color:var(--ln);letter-spacing:.14em;margin-top:6px}
 .src{text-align:right;font-size:10.5px;color:var(--sub);margin-top:4px}
 
-/* ── 메인 복귀 버튼 (하단 고정) ── */
-.home{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-50%);z-index:20;
-  display:flex;align-items:center;gap:7px;padding:7px 18px 7px 20px;border:1px solid var(--ln);border-radius:999px;
-  background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
-  color:var(--ln);font-size:10px;letter-spacing:.32em;text-decoration:none}
-.home svg{width:9px;height:9px;overflow:visible}
-.home svg{fill:var(--pk)}
+/* ── 메인 복귀 버튼 (왼쪽 위 반짝이) ── */
+#__back{position:fixed;left:calc(env(safe-area-inset-left,0px) + 6px);top:calc(env(safe-area-inset-top,0px) + 6px);width:38px;height:38px;z-index:50;display:flex;align-items:center;justify-content:center;border-radius:50%;filter:drop-shadow(0 0 4px rgba(255,134,189,.6));-webkit-tap-highlight-color:transparent;text-decoration:none;transition:transform .3s}
+#__back:hover{transform:scale(1.12)}
+#__back svg{width:30px;height:30px;display:block;overflow:visible}
 
 /* ── 화면 크기 대응 (폴드 펼침·태블릿) ── */
 @media (min-width:600px){
@@ -256,6 +253,12 @@ h1 .ht{margin:0 .1em}
   </section>
 </main>
 
-<a class="home" href="index.html"><svg viewBox="0 0 24 24"><use href="#s"/></svg>MAIN<svg viewBox="0 0 24 24"><use href="#s"/></svg></a>
+<a id="__back" href="index.html" aria-label="메인으로 돌아가기" title="MAIN"><svg viewBox="0 0 44 44"><defs><linearGradient id="__bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff86bd"/><stop offset="1" stop-color="#8b6fd9"/></linearGradient></defs><path d="M20 9 Q20 24 35 24 Q20 24 20 39 Q20 24 5 24 Q20 24 20 9Z" fill="none" stroke="url(#__bg)" stroke-width="1.6" stroke-linejoin="round"/><path d="M36 4.5 Q36 10 41.5 10 Q36 10 36 15.5 Q36 10 30.5 10 Q36 10 36 4.5Z" fill="none" stroke="url(#__bg)" stroke-width="1.3" stroke-linejoin="round"/></svg></a>
+<script>
+// index 안에서 열렸으면 index로 닫히며 돌아가고(노래 유지), 혼자 열렸으면 index.html로 이동해요
+document.getElementById('__back').addEventListener('click',function(e){
+  if(window.parent!==window){e.preventDefault();window.parent.postMessage({t:'closeSub'},'*');}
+});
+</script>
 </body>
 </html>
